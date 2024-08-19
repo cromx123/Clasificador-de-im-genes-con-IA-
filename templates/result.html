@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EyesDetector - Resultados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styless.css') }}">
+</head>
+<body>
+    <header>
+        <div class="containerh">
+            <h1>Proyecto IA -EyesDetector</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}" id="headermenu">Inicio</a></li>
+                    <li><a href="identificar.html" id="headermenu">Identificar</a></li>
+                    <li><a href="#" id="headermenu">Enfermedades</a></li>
+                    <li><a href="#" id="mode-switch">DAY☀️</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="results">
+            <h3>Resultados</h3>
+            <p>Enfermedad Predicha: {{ prediction }}</p>
+            <h3>Probabilidad de enfermedades:</h3>
+            <ul id="clasep">
+                {% for class_name, probability in probabilities.items() %}
+                    <li>{{ class_name }}: {{ probability | round(2) }}</li>
+                {% endfor %}
+            </ul>
+            <div class="image-container">
+                <img src="{{ url_for('uploaded_file', filename=filename) }}" alt="Uploaded Image" width="200">
+            </div>
+            <button class="btn">Subir otra imagen</button>
+        </section>
+    </main>
+    <script>
+        // Función para aplicar el modo según la preferencia guardada
+        function applyMode() {
+            const isNightMode = localStorage.getItem('night-mode') === 'true';
+            document.body.classList.toggle('night-mode', isNightMode);
+            document.getElementById('mode-switch').textContent = isNightMode ? 'NIGHT🌙' : 'DAY☀️';
+        }
+
+        // Aplicar el modo al cargar la página
+        applyMode();
+
+        // Cambiar el modo al hacer clic
+        document.getElementById('mode-switch').addEventListener('click', function(event) {
+            event.preventDefault();
+            const isNightMode = document.body.classList.toggle('night-mode');
+            localStorage.setItem('night-mode', isNightMode);
+            this.textContent = isNightMode ? 'NIGHT🌙' : 'DAY☀️';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EyesDetector - Identificar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styless.css') }}">
+</head>
+<body>
+    <header>
+        <div class="containerh">
+            <h1>Proyecto IA - EyesDetector</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}" id="headermenu">Inicio</a></li>
+                    <li><a href="#" id="menu_activo">Identificar</a></li>
+                    <li><a href="enfermedades.html" id="headermenu">Enfermedades</a></li>
+                    <li><a href="#" id="mode-switch">DAY☀️</a></li>
+                </ul>
+            </nav>
+        </div>   
+    </header>
+
+    <main>
+        <h2>Clasificador de enfermedades visuales</h2>
+        <div class="container">
+            <div class="left-panel">
+                <h3>Búsqueda</h3>
+                <p>Puedes subir un archivo desde tus archivos o usar tu webcam, como mejor prefieras.<br>Se recomienda tomarse la foto con un celular y subirla para no perder calidad.</p>
+                <form id="uploadForm" action="/" method="post" enctype="multipart/form-data">
+                    <div class="upload-area">
+                        <label for="fileInput" class="upload-label">
+                            agregar / soltar aquí una imagen
+                            <input type="file" id="fileInput" name="file" accept="image/*" style="display:none;">
+                        </label>
+                    </div>
+                    <button type="submit" class="btn">Identificar</button>
+                </form>
+
+            </div>
+
+            <div class="right-panel">
+                <div class="camera-area">
+                    <div class="camera-feed">
+                        <video id="video" width="200" height="150" autoplay></video>
+                    </div>
+                    <div class="camera-capture">
+                        <canvas id="canvas" width="200" height="150"></canvas>
+                    </div>
+                </div>
+                <button id="startCamera" class="btn">Encender cámara</button>
+                <button id="stopCamera" class="btn">Apagar cámara</button>
+                <button id="capture" class="btn">Capturar</button>
+                <!-- Formulario para confirmar -->
+                <form id="confirmForm" action="/" method="POST" enctype="multipart/form-data">
+                    <button id="confirmar" type="submit" class="btn">Confirmar</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script>
+        let videoStream;
+        let capturedBlob = null;
+
+        // Función para iniciar el video
+        async function startVideo() {
+            const video = document.getElementById('video');
+            try {
+                videoStream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = videoStream;
+            } catch (err) {
+                console.error('Error al acceder a la cámara: ', err);
+            }
+        }
+
+        // Función para detener el video
+        function stopVideo() {
+            const video = document.getElementById('video');
+            video.srcObject = null;
+
+            if (videoStream) {
+                videoStream.getTracks().forEach(track => track.stop());
+            }
+        }
+
+        // Captura la imagen del video y almacena el Blob
+    function captureImage() {
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        canvas.toBlob(blob => {
+            capturedBlob = blob; // Almacena el blob en la variable
+        }, 'image/png');
+    }
+
+    // Función para confirmar y enviar la imagen
+    function confirmarImage() {
+    if (capturedBlob) {
+        const fileInput = document.getElementById('fileInput');
+        const file = new File([capturedBlob], 'captured-image.png', { type: 'image/png' });
+
+        const dataTransfer = new DataTransfer();
+        dataTransfer.items.add(file);
+        fileInput.files = dataTransfer.files;
+
+        // Envía el formulario con la imagen
+        document.getElementById('uploadForm').submit();
+    } else {
+        alert('Por favor, capture una imagen primero.');
+    }
+}
+
+        document.getElementById('startCamera').addEventListener('click', startVideo);
+        document.getElementById('stopCamera').addEventListener('click', stopVideo);
+        document.getElementById('capture').addEventListener('click', captureImage);
+        document.getElementById('confirmar').addEventListener('click', confirmarImage);
+    </script>
+    <script>
+        // Función para aplicar el modo según la preferencia guardada
+        function applyMode() {
+            const isNightMode = localStorage.getItem('night-mode') === 'true';
+            document.body.classList.toggle('night-mode', isNightMode);
+            document.getElementById('mode-switch').textContent = isNightMode ? 'NIGHT🌙' : 'DAY☀️';
+        }
+
+        // Aplicar el modo al cargar la página
+        applyMode();
+
+        // Cambiar el modo al hacer clic
+        document.getElementById('mode-switch').addEventListener('click', function(event) {
+            event.preventDefault();
+            const isNightMode = document.body.classList.toggle('night-mode');
+            localStorage.setItem('night-mode', isNightMode);
+            this.textContent = isNightMode ? 'NIGHT🌙' : 'DAY☀️';
+        });
+    </script>
+</body>
+</html>

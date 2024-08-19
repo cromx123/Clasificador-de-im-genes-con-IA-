@@ -1,0 +1,160 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+header {
+    background-color: #f0f0f0;
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+    text-align: left;
+    float: left;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: right;
+}
+
+nav ul li {
+    display: inline;
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.theme-toggle {
+    float: right;
+    display: flex;
+    align-items: center;
+}
+
+.theme-toggle span {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+#theme-button {
+    background-color: yellow;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+main {
+    padding: 40px 0;
+}
+
+h2 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.description {
+    width: 60%;
+}
+
+.upload-box {
+    width: 35%;
+    background-color: #eee;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.upload-box h3 {
+    margin-top: 0;
+}
+
+.upload-label {
+    display: block;
+    margin-bottom: 15px;
+    padding: 20px;
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #fafafa;
+}
+
+.upload-label:hover {
+    background-color: #f0f0f0;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    background-color: #555;
+}
+
+#menu_activo {
+    text-shadow: 0 1px 25px #eeff00, -1px 0 rgb(253, 230, 152), 0 1px rgb(253, 230, 152), 1px 0 rgb(253, 230, 152), 0 -1px rgb(253, 230, 152);
+    font-weight: bold;
+}
+
+#mode-switch {
+    background-color: #ffd700;
+    border-radius: 15px;
+    padding: 5px 10px;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+}
+/* Estilos para el modo noche */
+.night-mode {
+    background-color: #333;
+    color: #fff;
+}
+.night-mode header, .night-mode footer{
+    background-color: #222;
+}
+.night-mode h3, .night-mode .upload-label{
+    color: #222;
+}
+.night-mode #mode-switch {
+    color: whitesmoke;
+    background-color: #2a2aa6;
+}
+.night-mode #headermenu{
+    color: whitesmoke;
+}
+.night-mode #menu_activo {
+    font-weight: bold;
+    color: #2a2aa6;
+    text-shadow: 0 1px 25px #cacce9d7, -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}

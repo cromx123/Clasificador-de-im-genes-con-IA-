@@ -1,0 +1,221 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f0f0f0;
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+    text-align: left;
+    float: left;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: right;
+}
+
+header nav ul li {
+    display: inline;
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+#mode-switch {
+    background-color: #ffd700;
+    border-radius: 15px;
+    padding: 5px 10px;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+}
+.containerh{
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.left-panel, .right-panel {
+    background-color: #eeeeee;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.left-panel {
+    flex: 1;
+    text-align: left;
+}
+
+.right-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+ 
+
+.camera-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#video, #canvas {
+    border: 1px solid black;
+    display: block;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.camera-feed {
+    background-image: url('/static/no-hay-video.png');
+    background-size: contain; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+}
+.btn {
+    background-color: #dcdcdc;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.btn:hover {
+    background-color: #cccccc;
+}
+.upload-label {
+    display: block;
+    margin-bottom: 15px;
+    padding: 20px;
+    border: 2px dashed #ccc;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #fafafa;
+}
+
+.upload-label:hover {
+    background-color: #f0f0f0;
+}
+.results {
+    background-color: #eaeaea;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    text-align: left;
+}
+
+.results h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.results p {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.results h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+#menu_activo {
+    text-shadow: 0 1px 25px #eeff00, -1px 0 rgb(253, 230, 152), 0 1px rgb(253, 230, 152), 1px 0 rgb(253, 230, 152), 0 -1px rgb(253, 230, 152);
+    font-weight: bold;
+}
+/* Estilos para el modo noche */
+.night-mode {
+    background-color: #333;
+    color: #fff;
+}
+.night-mode header, .night-mode footer{
+    background-color: #222;
+}
+.night-mode h3, .night-mode #clasep, .night-mode p, .night-mode .upload-label{
+    color: #222;
+}
+.night-mode #mode-switch {
+    color: whitesmoke;
+    background-color: #2a2aa6;
+}
+.night-mode #headermenu{
+    color: whitesmoke;
+}
+.night-mode .btn {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.night-mode .btn:hover {
+    background-color: #555;
+}
+.night-mode .left-panel, .night-mode .right-panel {
+    background-color: #a1a1a1;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.night-mode .upload-label {
+    display: block;
+    margin-bottom: 15px;
+    padding: 20px;
+    border: 2px dashed #616060;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #c9c9c9;
+}
+
+.night-mode .upload-label:hover {
+    background-color: #f0f0f0;
+    color: #222;
+}
+.night-mode #menu_activo {
+    font-weight: bold;
+    color: #2a2aa6;
+    text-shadow: 0 1px 25px #cacce9d7, -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}

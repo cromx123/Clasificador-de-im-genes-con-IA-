@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styless.css') }}">
+    <title>EyesDetector - Enfermedades</title>
+</head>
+<body>
+    <header>
+        <div class="containerh">
+            <h1>Proyecto IA - EyesDetector</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}" id="headermenu">Inicio</a></li>
+                    <li><a href="identificar.html" id="headermenu">Identificar</a></li>
+                    <li><a href="#" id="menu_activo">Enfermedades</a></li>
+                    <li><a href="#" id="mode-switch">DAY☀️</a></li>
+                </ul>
+            </nav>
+        </div>   
+    </header>
+    <main>
+    
+    </main>
+    <script>
+        // Función para aplicar el modo según la preferencia guardada
+        function applyMode() {
+            const isNightMode = localStorage.getItem('night-mode') === 'true';
+            document.body.classList.toggle('night-mode', isNightMode);
+            document.getElementById('mode-switch').textContent = isNightMode ? 'NIGHT🌙' : 'DAY☀️';
+        }
+
+        // Aplicar el modo al cargar la página
+        applyMode();
+
+        // Cambiar el modo al hacer clic
+        document.getElementById('mode-switch').addEventListener('click', function(event) {
+            event.preventDefault();
+            const isNightMode = document.body.classList.toggle('night-mode');
+            localStorage.setItem('night-mode', isNightMode);
+            this.textContent = isNightMode ? 'NIGHT🌙' : 'DAY☀️';
+        });
+    </script>
+</body>
+</html>
